@@ -20,11 +20,6 @@
 				<label>Введите Id пациента</label>	
 				<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "537b9f5f01c84ea4163c7cf3" >
 			</div>
-			<!--
-			<div class="field">
-				<input type = "button" name = "sub" value = "Edit" ng-click='main()'>
-			</div>
-		-->
 			<div>
 				<P>Дополнительная информация:</P>
 				<span id = "res"><span>
@@ -44,7 +39,7 @@
 		<form name = "addPaition" id = "add" action = "/add" method = "post">
 		</form>
 
-
+		<input type = "text" name = "lNamne" value="Sherstyuk">
 		<table class="table table-hover">
 			<tr>
 				<td>#</td>
@@ -57,13 +52,15 @@
 			</tr>
 			<tr ng-repeat="pation in pations">
 				<td>{{$index + 1}}</td>
-				<td>{{pation.lNamne}}</td>
-				<td>{{pation.fNamne}}</td>
-				<td>{{pation.mNamne}}</td>
+				<td>{{pation.lastName}}</td>
+				<td>{{pation.firstName}}</td>
+				<td>{{pation.middleName}}</td>
 				<td>{{pation.diagnosis}}</td>
 				<td>{{pation.dataRegistartion}}</td>
-				<td><input type = "button" name = "sub" value = "Edit" ng-click='main()'></td>
+				<td><input type = "button" name = "sub" value = "Edit" ng-click='main(pation._id)'></td>
 			</tr>
 		</table>
 	</body>	
 </html>
+
+

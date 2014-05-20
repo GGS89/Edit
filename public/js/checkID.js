@@ -34,49 +34,50 @@ function box_shadow(res,JQelement){
 	}
 }
 
-function main(){
-	if(res){
-		document.findByID.submit();
-	}
-	else{
-		document.addPaition.submit();
-	}
-}
+// function main(){
+// 	if(res){
+// 		document.findByID.submit();
+// 	}
+// 	else{
+// 		document.addPaition.submit();
+// 	}
+// }
 
 
 function mainControl($scope, $http) {
 
-	$scope.main = function(){
-		if(res){
-			document.findByID.submit();
-		}
-		else{
-			document.addPaition.submit();
-		}
+	$scope.main = function(id){
+		console.log("id in main")
+		console.log(id);
+		// if(res){
+		// 	document.findByID.submit();
+		// }
+		// else{
+		// 	document.addPaition.submit();
+		// }
 	}
 
 	//$scope.pations = [];
 	$scope.Angular=function(){
 		console.log('Angular');
 		var data = {};
+
 		data.id= $("input[name=Id]").val();
+		data.lNamne= $("input[name=lNamne]").val();
+		//console.log($("input[name=lNamne]").val())
 		console.log(data.id);
  	 	
- 	 	dt = $.ajax({ 
+ 	 	$.ajax({ 
 		url: 'http://localhost:3000/ajax',
 		type: 'POST',
 		cache: false, 
 		data: data, 
 		success: function(data){
 			 console.log('we get');
-			 $("input[name=lastname]").val(data.lNamne);
-			 $("input[name=firstname]").val(data.fNamne);
-			 $("input[name=secondtname]").val(data.mNamne);
-			 $("input[name=diagnosis]").val(data.diagnosis);
-			 $("input[name=dataRegistartion]").val(data.dataRegistartion);
 			 res = true;
+			 console.log(data);
 			 $scope.$apply(function(){
-			 	$scope.pations = [data];
+			 	$scope.pations = data;
 			 });
 			 }
 		,error: function(jqXHR, textStatus, err){
