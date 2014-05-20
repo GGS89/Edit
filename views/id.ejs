@@ -18,11 +18,13 @@
 			<div class="main">
 			<div class="field">
 				<label>Введите Id пациента</label>	
-				<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "5375f620bb6f950814a14b30" >
+				<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "537b9f5f01c84ea4163c7cf3" >
 			</div>
+			<!--
 			<div class="field">
-				<input type = "button" name = "sub" value = "Edit" onClick = 'main()'>
+				<input type = "button" name = "sub" value = "Edit" ng-click='main()'>
 			</div>
+		-->
 			<div>
 				<P>Дополнительная информация:</P>
 				<span id = "res"><span>
@@ -33,36 +35,16 @@
 		</form>
 		</div>
 		<div>
-		<form name = "showPatient">
-			<div class="main">
-			<div class="field">
-				<label>Фамилия</label>	
-			<input type = "text" name = "lastname"  disabled>
-			</div>
-			<div class="field">
-				<label>Имя</label>
-				<input type = "text" name = "firstname"  disabled>	
-			</div>
-			<div class="field">
-				<label>Отчество</label>
-				<input type = "text" name = "secondtname"  disabled>
-			</div>
-			<div class="field">
-				<label>Диагноз</label>
-				<input type = "text" name = "diagnosis"   disabled>
-			</div>
-			<div class="field">
-				<label>Дата регистрации</label>
-				<input type = "text" name = "dataRegistartion"  disabled>
-			</div>
-		</div>
-		</form>
+		
 		</div>
 			<div class="field">
 				<input type = "button" name = "Angular" value = "Angular" ng-click="Angular()">
 			</div>
+		
 		<form name = "addPaition" id = "add" action = "/add" method = "post">
 		</form>
+
+
 		<table class="table table-hover">
 			<tr>
 				<td>#</td>
@@ -71,6 +53,7 @@
 				<td>Отчество</td>
 				<td>Диагноз</td>
 				<td>Дата регистрации</td>
+				<td></td>
 			</tr>
 			<tr ng-repeat="pation in pations">
 				<td>{{$index + 1}}</td>
@@ -79,6 +62,7 @@
 				<td>{{pation.mNamne}}</td>
 				<td>{{pation.diagnosis}}</td>
 				<td>{{pation.dataRegistartion}}</td>
+				<td><input type = "button" name = "sub" value = "Edit" ng-click='main()'></td>
 			</tr>
 		</table>
 	</body>	

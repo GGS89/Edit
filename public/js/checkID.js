@@ -6,34 +6,14 @@ function checkID(name,value){
 	var data = {};
 	data.id= $("input[name=Id]").val();
 	console.log(data);
-	$.ajax({ 
-		url: 'http://localhost:3000/ajax',
-		type: 'POST',
-		cache: false, 
-		data: data, 
-		success: function(data){
-			 console.log('we get');
-			 console.log(data);
-			 $("input[name=lastname]").val(data.lNamne);
-			 $("input[name=firstname]").val(data.fNamne);
-			 $("input[name=secondtname]").val(data.mNamne);
-			 $("input[name=diagnosis]").val(data.diagnosis);
-			 $("input[name=dataRegistartion]").val(data.dataRegistartion);
-			 res = true;
-			 }
-		,error: function(jqXHR, textStatus, err){
-			console.log('fialed');
-			res = false;
-           	}
-});
-
 	if (value.length == 24) {
 		res = true;
 	}
 	box_shadow(res,JQelement);
 }
-var timeout_id = 'empty';
 
+
+var timeout_id = 'empty';
 function timer(name){
 	if(timeout_id != 'empty'){
 		clearTimeout(timeout_id);
@@ -65,6 +45,15 @@ function main(){
 
 
 function mainControl($scope, $http) {
+
+	$scope.main = function(){
+		if(res){
+			document.findByID.submit();
+		}
+		else{
+			document.addPaition.submit();
+		}
+	}
 
 	//$scope.pations = [];
 	$scope.Angular=function(){

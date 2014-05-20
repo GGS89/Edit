@@ -47,6 +47,7 @@ app.get('/',function(req, res){
 app.post('/ajax',bodyParser(), function(req, res){
     //res.send('Test');
     var pationID = req.body.id
+    console.log("===========================================");
     console.log(pationID);
     //res.send("good");
     Patient.find({_id:pationID},function (err, persons) {
@@ -69,7 +70,7 @@ app.post('/ajax',bodyParser(), function(req, res){
 
 app.post('/edit',function(req, res){
     var paitionId = req.body.Id;
-
+    console.log(req.body.Id);
     Patient.find({_id:paitionId},function (err, persons) {
         select = {
             Id : paitionId,
