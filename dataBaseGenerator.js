@@ -7,12 +7,21 @@ db.once("open", function callback () {
     console.log("Connected!")
 });
 var patientSchema = new mongoose.Schema({
-	firstName : { type : String, defult: 'John'},
-	middleName : {type : String, defult:'-'},
 	lastName : {type : String, defult:'Dou'},
-	diagnosis :{type:String},
-	dataRegistartion: {type:String},
+	firstName : { type : String, defult: 'John'},
+	fatherName : {type : String, defult:'-'},
+	dateOfBirth: {type : Data, defult: new Data()},
+	sex:{type:String},
+	SSN: {type:Number},
+	passportNumber: {type:String},
+	address: {type:String},
+	race: {type:String},
+	religion: {type:String},
+	specialSigns: {type:String},
+	national: {type:String},
+	phoneNumber: {type:String}
 });
+
 var Patient = db.model("Patient",patientSchema);
 
 function generatePatient(){
