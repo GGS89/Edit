@@ -1,0 +1,85 @@
+
+<html ng-app>
+	<head>
+		<meta charset="UTF-8" />
+	<titel>
+		<link rel="stylesheet" type="text/css" href="sheets.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script type = "text/javascript" src = "checkID.js"></script>
+		<script src="controllers.js"></script>
+		
+	</titel>
+	</head>
+	<body ng-controller="mainControl">
+		<div>
+		<form name = "findByID" id = "main" action = "/edit" method = "post">
+			<div class="main">
+			<div class="field">
+				<label>Введите Id пациента</label>	
+				<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "5375f620bb6f950814a14b30" >
+			</div>
+			<div class="field">
+				<input type = "button" name = "sub" value = "Edit" onClick = 'main()'>
+			</div>
+			<div>
+				<P>Дополнительная информация:</P>
+				<span id = "res"><span>
+				<span id = "info"><span>
+				<span id = "hint"><span>
+			</div>
+		</div>
+		</form>
+		</div>
+		<div>
+		<form name = "showPatient">
+			<div class="main">
+			<div class="field">
+				<label>Фамилия</label>	
+			<input type = "text" name = "lastname"  disabled>
+			</div>
+			<div class="field">
+				<label>Имя</label>
+				<input type = "text" name = "firstname"  disabled>	
+			</div>
+			<div class="field">
+				<label>Отчество</label>
+				<input type = "text" name = "secondtname"  disabled>
+			</div>
+			<div class="field">
+				<label>Диагноз</label>
+				<input type = "text" name = "diagnosis"   disabled>
+			</div>
+			<div class="field">
+				<label>Дата регистрации</label>
+				<input type = "text" name = "dataRegistartion"  disabled>
+			</div>
+		</div>
+		</form>
+		</div>
+			<div class="field">
+				<input type = "button" name = "Angular" value = "Angular" ng-click="Angular()">
+			</div>
+		<form name = "addPaition" id = "add" action = "/add" method = "post">
+		</form>
+		<table class="table table-hover">
+			<tr>
+				<td>#</td>
+				<td>Фамилия</td>
+				<td>Имя</td>
+				<td>Отчество</td>
+				<td>Диагноз</td>
+				<td>Дата регистрации</td>
+			</tr>
+			<tr ng-repeat="pation in pations">
+				<td>{{$index + 1}}</td>
+				<td>{{pation.lNamne}}</td>
+				<td>{{pation.fNamne}}</td>
+				<td>{{pation.mNamne}}</td>
+				<td>{{pation.diagnosis}}</td>
+				<td>{{pation.dataRegistartion}}</td>
+			</tr>
+		</table>
+	</body>	
+</html>
