@@ -47,14 +47,13 @@ function box_shadow(res,JQelement){
 function mainControl($scope, $http) {
 
 	$scope.main = function(id){
+		$("input[name=Id]").val(id);
+		document.findByID.submit();
+	}
+
+	$scope.addPation = function(){
 		console.log("id in main")
-		console.log(id);
-		// if(res){
-		// 	document.findByID.submit();
-		// }
-		// else{
-		// 	document.addPaition.submit();
-		// }
+		document.addPaition.submit();
 	}
 
 	//$scope.pations = [];
@@ -68,7 +67,7 @@ function mainControl($scope, $http) {
 		console.log(data.id);
  	 	
  	 	$.ajax({ 
-		url: 'http://localhost:3000/ajax',
+		url: 'http://localhost:3000/findPations',
 		type: 'POST',
 		cache: false, 
 		data: data, 

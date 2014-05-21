@@ -44,7 +44,7 @@ app.get('/',function(req, res){
 );
 
 
-app.post('/ajax',bodyParser(), function(req, res){
+app.post('/findPations',bodyParser(), function(req, res){
     //res.send('Test');
     var pationID = req.body.id;
     var pationLastName = req.body.lNamne;
@@ -76,10 +76,11 @@ app.post('/ajax',bodyParser(), function(req, res){
 });
 
 
-app.post('/edit',function(req, res){
+app.post('/editPations',function(req, res){
     var paitionId = req.body.Id;
-    console.log(req.body.Id);
+    console.log(paitionId);
     Patient.find({_id:paitionId},function (err, persons) {
+        console.log(persons);
         select = {
             Id : paitionId,
             lNamne : persons[0].lastName,
@@ -115,10 +116,11 @@ app.post('/', function(req, res){
 
 
 
-app.post('/add', function(req, res){
+app.post('/addPaition', function(req, res){
     res.render('add',{});
 });
-app.post('/addPerson', function(req, res){
+
+app.post('/createPation', function(req, res){
    var patient = new Patient({
             firstName : req.body.firstname,
             middleName : req.body.secondtname,

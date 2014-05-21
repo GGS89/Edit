@@ -14,30 +14,27 @@
 	</head>
 	<body ng-controller="mainControl">
 		<div>
-		<form name = "findByID" id = "main" action = "/edit" method = "post">
+		<form name = "findByID" id = "main" action = "/editPations" method = "post" hidden>
 			<div class="main">
-			<div class="field">
-				<label>Введите Id пациента</label>	
-				<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "537b9f5f01c84ea4163c7cf3" >
+				<div class="field">
+					<label>Введите Id пациента</label>	
+					<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "537b9f5f01c84ea4163c7cf3" >
+				</div>
 			</div>
-			<div>
-				<P>Дополнительная информация:</P>
-				<span id = "res"><span>
-				<span id = "info"><span>
-				<span id = "hint"><span>
-			</div>
-		</div>
 		</form>
 		</div>
 		<div>
 		
+		<form name = "addPaition" id = "add" action = "/addPaition" method = "post">
+		</form>
+
 		</div>
 			<div class="field">
 				<input type = "button" name = "Angular" value = "Angular" ng-click="Angular()">
-			</div>
+		</div>
 		
-		<form name = "addPaition" id = "add" action = "/add" method = "post">
-		</form>
+		
+
 
 		<input type = "text" name = "lNamne" value="Sherstyuk">
 		<table class="table table-hover">
@@ -49,6 +46,15 @@
 				<td>Диагноз</td>
 				<td>Дата регистрации</td>
 				<td></td>
+			</tr>
+			<tr>
+				<td> - </td>
+				<td>empty</td>
+				<td>empty</td>
+				<td>empty</td>
+				<td>empty</td>
+				<td>empty</td>
+				<td><input type = "button" name = "create" value = "Create" ng-click='addPation()'></td>
 			</tr>
 			<tr ng-repeat="pation in pations">
 				<td>{{$index + 1}}</td>
