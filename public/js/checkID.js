@@ -58,6 +58,7 @@ function mainControl($scope, $http) {
 
 	//$scope.pations = [];
 	$scope.Angular=function(){
+		$scope.pations = {};
 		console.log('Angular');
 		var data = {};
 

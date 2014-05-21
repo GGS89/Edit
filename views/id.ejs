@@ -13,30 +13,32 @@
 	</titel>
 	</head>
 	<body ng-controller="mainControl">
-		<div>
 		<form name = "findByID" id = "main" action = "/editPations" method = "post" hidden>
-			<div class="main">
-				<div class="field">
-					<label>Введите Id пациента</label>	
-					<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "537b9f5f01c84ea4163c7cf3" >
-				</div>
-			</div>
+			<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "537b9f5f01c84ea4163c7cf3" >
 		</form>
-		</div>
-		<div>
-		
 		<form name = "addPaition" id = "add" action = "/addPaition" method = "post">
 		</form>
 
-		</div>
-			<div class="field">
-				<input type = "button" name = "Angular" value = "Angular" ng-click="Angular()">
-		</div>
 		
 		
 
+		<form class="form-inline" role="form">
+		  <div class="form-group">
+		    <input type="text" class="form-control" name = "lNamne" placeholder="Enter Lastname">
+		  </div>
+		  <div class="form-group">
+		    <input type="text" class="form-control" name = "FName" placeholder="Enter Firstname" ng-model="query.firstName">
+		  </div>
+		  <div class="form-group">
+		    <input type="text" class="form-control" name = "MName" placeholder="Enter Fathername" ng-model="query.middleName">
+		  </div>
+		  <div class="form-group">
+		    <input type="text" class="form-control" name = "MName" placeholder="Enter birthday">
+		  </div>
+		  <button  ng-click="Angular()" class="btn btn-default">Find</button>
+		</form>
 
-		<input type = "text" name = "lNamne" value="Sherstyuk">
+		<div>
 		<table class="table table-hover">
 			<tr>
 				<td>#</td>
@@ -54,18 +56,19 @@
 				<td>empty</td>
 				<td>empty</td>
 				<td>empty</td>
-				<td><input type = "button" name = "create" value = "Create" ng-click='addPation()'></td>
+				<td><input type = "button" class="btn btn-default" name = "create" value = "Create" ng-click='addPation()'></td>
 			</tr>
-			<tr ng-repeat="pation in pations">
+			<tr ng-repeat="pation in pations | filter:query">
 				<td>{{$index + 1}}</td>
 				<td>{{pation.lastName}}</td>
 				<td>{{pation.firstName}}</td>
 				<td>{{pation.middleName}}</td>
 				<td>{{pation.diagnosis}}</td>
 				<td>{{pation.dataRegistartion}}</td>
-				<td><input type = "button" name = "sub" value = "Edit" ng-click='main(pation._id)'></td>
+				<td><input type = "button" class="btn btn-default" name = "sub" value = "Edit" ng-click='main(pation._id)'></td>
 			</tr>
 		</table>
+		<div>
 	</body>	
 </html>
 

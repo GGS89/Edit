@@ -50,29 +50,12 @@ app.post('/findPations',bodyParser(), function(req, res){
     var pationLastName = req.body.lNamne;
     console.log(pationLastName);
     console.log(pationID);
-    //res.send("good");
-    // Patient.find({_id:pationID},function (err, persons) {
-    //     //console.log(persons);
-    //             select = {
-    //                 Id : pationID,
-    //                 lNamne : persons[0].lastName,
-    //                 fNamne : persons[0].firstName,
-    //                 mNamne : persons[0].middleName,
-    //                 diagnosis: persons[0].diagnosis,
-    //                 dataRegistartion: persons[0].dataRegistartion
-    //             }
-    //             //console.log('select');
-    //             //console.log(select);
-    //             res.send(select);
-    // });
-    Patient.find({lastName:pationLastName},function (err, persons) {
+    var re = new RegExp(pationLastName);
+    Patient.find({lastName:re},function (err, persons) {
         console.log(persons);
         res.send(persons);
     });
 
-
-
-   
 });
 
 
