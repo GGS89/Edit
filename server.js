@@ -46,12 +46,25 @@ app.get('/',function(req, res){
 
 app.post('/findPations',bodyParser(), function(req, res){
     //res.send('Test');
+
+// data.lNamne= $("input[name=lNamne]").val();
+//         data.FName= $("input[name=FName]").val();
+//         data.MNamne= $("input[name=MName]").val();
+//         data.BirthDay= $("input[name=BirthDay]").val();
+
     var pationID = req.body.id;
     var pationLastName = req.body.lNamne;
+    var pationFirstName = req.body.FName;
+    var pationMiddleName = req.body.MNamne;
+    var pationBirthDay = req.body.BirthDay;
+
     console.log(pationLastName);
     console.log(pationID);
-    var re = new RegExp(pationLastName);
-    Patient.find({lastName:re},function (err, persons) {
+    var re1 = new RegExp(pationLastName);
+    var re2 = new RegExp(pationFirstName);
+    var re3 = new RegExp(pationMiddleName);
+    //var re = new RegExp(pationLastName);
+    Patient.find({$and:[{lastName:re1},{firstName:re2},{middleName:re3}]},function (err, persons) {
         console.log(persons);
         res.send(persons);
     });

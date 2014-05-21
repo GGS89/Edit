@@ -33,7 +33,7 @@
 		    <input type="text" class="form-control" name = "MName" placeholder="Enter Fathername" ng-model="query.middleName">
 		  </div>
 		  <div class="form-group">
-		    <input type="text" class="form-control" name = "MName" placeholder="Enter birthday">
+		    <input type="text" class="form-control" name = "BirthDay" placeholder="Enter birthday">
 		  </div>
 		  <button  ng-click="Angular()" class="btn btn-default">Find</button>
 		</form>
@@ -42,16 +42,14 @@
 		<table class="table table-hover">
 			<tr>
 				<td>#</td>
-				<td>Фамилия</td>
-				<td>Имя</td>
-				<td>Отчество</td>
-				<td>Диагноз</td>
-				<td>Дата регистрации</td>
+				<td>Lastname</td>
+				<td>Firstname</td>
+				<td>Fathername</td>
+				<td>Birthday</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td> - </td>
-				<td>empty</td>
 				<td>empty</td>
 				<td>empty</td>
 				<td>empty</td>
@@ -63,7 +61,6 @@
 				<td>{{pation.lastName}}</td>
 				<td>{{pation.firstName}}</td>
 				<td>{{pation.middleName}}</td>
-				<td>{{pation.diagnosis}}</td>
 				<td>{{pation.dataRegistartion}}</td>
 				<td><input type = "button" class="btn btn-default" name = "sub" value = "Edit" ng-click='main(pation._id)'></td>
 			</tr>
