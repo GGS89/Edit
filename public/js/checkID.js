@@ -46,6 +46,7 @@ function box_shadow(res,JQelement){
 
 
 function mainControl($scope, $http) {
+	var sendAjax = true;
 
 	$scope.main = function(id){
 		$("input[name=Id]").val(id);
@@ -60,32 +61,55 @@ function mainControl($scope, $http) {
 	//$scope.pations = [];
 	$scope.Angular=function(){
 		$scope.pations = {};
-		console.log('Angular');
 		var data = {};
-
-		data.id= $("input[name=Id]").val();
+		var countEmptyfield = 0;
+		var numberField = 4;
 		data.lNamne= $("input[name=lNamne]").val();
-		//console.log($("input[name=lNamne]").val())
-		console.log(data.id);
- 	 	
- 	 	$.ajax({ 
-		url: 'http://localhost:3000/findPations',
-		type: 'POST',
-		cache: false, 
-		data: data, 
-		success: function(data){
-			 console.log('we get');
-			 res = true;
-			 console.log(data);
-			 $scope.$apply(function(){
-			 	$scope.pations = data;
-			 });
-			 }
-		,error: function(jqXHR, textStatus, err){
-			console.log('fialed');
-			res = false;
-           	}
-	});
+		data.FName= $("input[name=FName]").val();
+		data.MNamne= $("input[name=MName]").val();
+		data.BirthDay= $("input[name=BirthDay]").val();
+		
+		for(var key in data){
+			if(data[key].length == 0){
+				countEmptyfield++;
+			}
+		}
+		console.log(countEmptyfield);
+		if(countEmptyfield == numberField){
+			sendAjax = false
+			console.log('All fild empty')
+			console.log(sendAjax);
+		}
+		else{
+			sendAjax = true
+			console.log('Not All fild')
+			console.log(sendAjax);
+		}
+		//console.log(sendAjax);
+
+		console.log(data);
+ 	 	if(sendAjax){
+	 	 	$.ajax({ 
+			url: 'http://localhost:3000/findPations',
+			type: 'POST',
+			cache: false, 
+			data: data, 
+			success: function(data){
+				 console.log('success');
+				 res = true;
+				 sendAjax = false;
+				 //console.log(sendAjax);
+				 console.log(data);
+				 $scope.$apply(function(){
+				 	$scope.pations = data;
+				 });
+				 }
+			,error: function(jqXHR, textStatus, err){
+				console.log('fialed');
+				res = false;
+	           	}
+		});
+ 	 }
 
  	 
 
