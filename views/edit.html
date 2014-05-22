@@ -1,0 +1,54 @@
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+	<titel>
+		<link rel="stylesheet" type="text/css" href="sheets.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type = "text/javascript" src = "edit.js"></script>
+		
+	</titel>
+	</head>
+	<body ng-controller="editController">
+		<p>Edit</p>
+		<form name = "formPerson" id = "main" action = "/" method = "post">
+			<div class="main">
+			<div class="field">
+				<label>Id Пациента</label>	
+				<input type = "text" name = "Id" value =  hidden>
+			</div>
+			<div class="field">
+				<label>Фамилия</label>	
+				<input type = "text" name = "lastname" onchange="checkLast(name,value)" onkeypress="timer(name)"  value = 
+			</div>
+			<div class="field">
+				<label>Имя</label>
+				<input type = "text" name = "firstname" onchange="checkFirst(name,value)" onkeypress="timer(name)"  value = >	
+			</div>
+			<div class="field">
+				<label>Отчество</label>
+				<input type = "text" name = "secondtname" onchange="checkSecond(name,value)" onkeypress="timer(name)" value = >
+			</div>
+			<div class="field">
+				<label>Диагноз</label>
+				<input type = "text" name = "diagnosis" onchange="checkSecond(name,value)" onkeypress="timer(name)" value = >
+			</div>
+			<div class="field">
+				<label>Дата регистрации</label>
+				<input type = "text" name = "dataRegistartion" onchange="checkSecond(name,value)" onkeypress="timer(name)" value = >
+			</div>
+			<div class="field">
+				<input type = "button" class="btn btn-default" name = "sub" value = "Отправить" onClick = 'main()'>
+			</div>
+			<div>
+				<P>Дополнительная информация:</P>
+				<span id = "res"><span>
+				<span id = "info"><span>
+				<span id = "hint"><span>
+			</div>	
+		</div>
+		</form>
+		
+	</body>	
+</html>

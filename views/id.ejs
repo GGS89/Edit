@@ -1,0 +1,72 @@
+
+<html ng-app>
+	<head>
+		<meta charset="UTF-8" />
+	<titel>
+		<link rel="stylesheet" type="text/css" href="sheets.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script type = "text/javascript" src = "checkID.js"></script>
+		<script src="controllers.js"></script>
+		
+	</titel>
+	</head>
+	<body ng-controller="mainControl">
+		<form name = "findByID" id = "main" action = "/editPations" method = "post" hidden>
+			<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "537b9f5f01c84ea4163c7cf3" >
+		</form>
+		<form name = "addPaition" id = "add" action = "/addPaition" method = "post">
+		</form>
+
+		
+		
+
+		<form class="form-inline" role="form">
+		  <div class="form-group">
+		    <input type="text" class="form-control" name = "lNamne" placeholder="Enter Lastname">
+		  </div>
+		  <div class="form-group">
+		    <input type="text" class="form-control" name = "FName" placeholder="Enter Firstname" ng-model="query.firstName">
+		  </div>
+		  <div class="form-group">
+		    <input type="text" class="form-control" name = "MName" placeholder="Enter Fathername" ng-model="query.middleName">
+		  </div>
+		  <div class="form-group">
+		    <input type="text" class="form-control" name = "BirthDay" placeholder="Enter birthday">
+		  </div>
+		  <button  ng-click="Angular()" class="btn btn-default">Find</button>
+		</form>
+
+		<div>
+		<table class="table table-hover">
+			<tr>
+				<td>#</td>
+				<td>Lastname</td>
+				<td>Firstname</td>
+				<td>Fathername</td>
+				<td>Birthday</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td> - </td>
+				<td>empty</td>
+				<td>empty</td>
+				<td>empty</td>
+				<td>empty</td>
+				<td><input type = "button" class="btn btn-default" name = "create" value = "Create" ng-click='addPation()'></td>
+			</tr>
+			<tr ng-repeat="pation in pations | filter:query">
+				<td>{{$index + 1}}</td>
+				<td>{{pation.lastName}}</td>
+				<td>{{pation.firstName}}</td>
+				<td>{{pation.middleName}}</td>
+				<td>{{pation.dataRegistartion}}</td>
+				<td><input type = "button" class="btn btn-default" name = "sub" value = "Edit" ng-click='main(pation._id)'></td>
+			</tr>
+		</table>
+		<div>
+	</body>	
+</html>
+
+
