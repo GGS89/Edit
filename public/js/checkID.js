@@ -25,6 +25,7 @@ function timer(name){
 		},300);
 }
 
+
 function box_shadow(res,JQelement){
 	if (!(res)){
 		$(JQelement).css('-webkit-box-shadow','0 0 8px red');
