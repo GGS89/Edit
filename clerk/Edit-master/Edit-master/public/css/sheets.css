@@ -1,0 +1,23 @@
+
+
+
+.main {
+	float:left;
+}
+.field {
+	clear:both; 
+	text-align:right;
+	line-height:30px;
+	 }
+label {
+	float:left;
+	padding-right:15px;
+}
+
+#res{
+	color: blue;
+}
+
+#info{
+	color: red;
+}
