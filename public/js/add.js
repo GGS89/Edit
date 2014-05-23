@@ -1,3 +1,56 @@
+function addControl($scope, $http) {
+
+
+	$scope.getRace = function(id){
+		$scope.races = {};
+		$scope.sex = {};
+		$.ajax({ 
+				url: 'http://localhost:3000/getRase',
+				type: 'POST',
+				cache: false, 
+				data: '', 
+				success: function(race){
+					 console.log('success');
+					 //console.log(sendAjax);
+					 console.log(race);
+					 $scope.$apply(function(){
+					 	$scope.races = race;
+					 });
+					 }
+				,error: function(jqXHR, textStatus, err){
+					console.log('fialed');
+					res = false;
+		           	}
+			});
+		$.ajax({ 
+				url: 'http://localhost:3000/getSex',
+				type: 'POST',
+				cache: false, 
+				data: '', 
+				success: function(sex){
+					 console.log('success');
+					 //console.log(sendAjax);
+					 console.log(sex);
+					 $scope.$apply(function(){
+					 	$scope.sexs = sex;
+					 });
+					 }
+				,error: function(jqXHR, textStatus, err){
+					console.log('fialed');
+					res = false;
+		           	}
+			});
+	}
+
+	$scope.main = function(){
+		console.log("Main worked");
+		document.formCreatPerson.submit();
+	}
+
+
+};
+
+
 
 /*
 function checkID(name,value){
@@ -30,7 +83,4 @@ function box_shadow(res,JQelement){
 	}
 }
 */
-function main(){
-	document.formPerson.submit();
 
-}

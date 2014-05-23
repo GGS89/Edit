@@ -1,0 +1,104 @@
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+	<titel>
+		<link rel="stylesheet" type="text/css" href="sheets.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type = "text/javascript" src = "add.js"></script>
+		
+	</titel>
+	</head>
+	<body>
+		<P>ADD</P>
+		<form name = "formPerson" id = "main" action = "/createPation" method = "post">
+			<div class="main">
+			<div class="field">
+				<label>Last Name</label>	
+				<input type = "text" name = "lastName">
+			</div>
+			<div class="field">
+				<label>First Name</label>
+				<input type = "text" name = "firstName">	
+			</div>
+			<div class="field">
+				<label>Father Name</label>
+				<input type = "text" name = "fatherName" >
+			</div>
+			<div class="field">
+				<label>Date Of Birth</label>
+				<input type="date" name="dateOfBirth" min="1900-01-01" max="2014-05-22">
+			</div>
+			<div class="field">
+				<label>Sex</label>
+				<select>
+  					<option>Sex1</option>
+  					<option>Sex2</option>
+				</select>
+			</div>
+			<div class="field">
+				<label>SSN</label>
+				<input type = "text" name = "SSN">
+			</div>
+			<div class="field">
+				<label>Passport Number</label>
+				<input type = "text" name = "passportsNumber">
+			</div>
+			<div class="field">
+				<label>Race</label>
+				<input type = "text" name = "race">
+			</div>
+			<div class="field">
+				<label>Religion</label>
+				<input type = "text" name = "religion">
+			</div>
+			<div class="field">
+				<label>Special Signs</label>
+				<input type = "text" >
+			</div>
+			<div class="field">
+				<label>contactInformation</label>
+				<input type = "text" name = "sex">
+			</div>
+
+
+			<div class="field">
+				<input type = "button" class="btn btn-default" name = "sub" value = "Отправить" onClick = 'main()'>
+			</div>
+			<div>
+				<P>Дополнительная информация:</P>
+				<span id = "res"><span>
+				<span id = "info"><span>
+				<span id = "hint"><span>
+			</div>
+		</div>
+		</form>
+		
+	</body>	
+</html>
+<!--
+var patientSchema = new mongoose.Schema({
+	lastName          : {type : String, defult:'Dou'},
+	firstName         : {type : String, defult: 'John'},
+	fatherName        : {type : String, defult:'-'},
+	dateOfBirth       : {type : Date, defult: Date.now},
+	sex               : {type:String},
+	SSN               : {type:String},
+	passportNumber    : {type:String},
+	race              : {type:String},
+	religion          : {type:String},
+	specialSigns      : {type:String},
+	national          : {type:String},
+	contactInformation: {type:String},
+	contactPerson     : {type:String}
+});
+
+var contactInformationSchema = new mongoose.Schema({
+	phoneNumberMobile  : {type:String},
+	phoneNumberHome    : {type:String},
+	email              : {type:String},
+	skype              : {type:String}
+
+});
+ -->

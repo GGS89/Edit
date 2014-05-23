@@ -1,5 +1,16 @@
+.form-control.addInput{
+	width: 200px;
+}
 
-
+.specialSigns{
+	width: 400px;
+}
+.data{
+	width: 155px;
+}
+.sex{
+	width: 155px;
+}
 
 .main {
 	float:left;

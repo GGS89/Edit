@@ -12,8 +12,55 @@ var users = require('./routes/user');
 var pageId = require('./routes/idPage');
 var editPation = require('./routes/Edit');
 
+//dict
+var Race = require('./db/Race');
+var Sex = require('./db/Sex');
 
-var Patient = require('./db/Pation') 
+
+typeOfRace = ['White','Black','Asian'];
+
+// generate race table
+function generateRace(){
+    for(var i =0; i < typeOfRace.length; i++){
+        var race = new Race({type:typeOfRace[i]});
+        race.save(function (err, race) {
+            if (err){
+                 console.log("Something goes wrong with user " + race.type);
+                }
+        });
+        console.log(race);
+    }
+}
+//generateRace()
+// Race.find({},function(err,res){
+//     console.log(res);
+// });
+
+typeOfSex = ['male','female','hermaphrodite','Shemale'];
+
+//generate sex table
+function generateSex(){
+    for(var i =0; i < typeOfSex.length; i++){
+        var sex = new Sex({type:typeOfSex[i]});
+        sex.save(function (err, sex) {
+            if (err){
+                 console.log("Something goes wrong with user " + sex.type);
+                }
+        });
+        console.log(sex);
+    }
+}
+//generateSex()
+// Sex.find({},function(err,res){
+//     console.log(res);
+// });
+//Sex.find({_id:'537f0fad8dbffaf80b418c69'}).remove().exec();
+
+
+
+var Patient = require('./db/Pation');
+var ContactInformation = require('./db/ContactInformation');
+var ContactPerson = require('./db/ContactPerson');
 
 var app = express();
 app.use(bodyParser());
@@ -42,6 +89,18 @@ app.set('view engine', 'ejs');
 app.get('/',function(req, res){
   res.render('id', {});}
 );
+
+app.post('/getRase',bodyParser(), function(req, res){
+    Race.find({},function (err, race) {
+        res.send(race);
+    });
+
+});
+app.post('/getSex',bodyParser(), function(req, res){
+    Sex.find({},function (err, sex) {
+        res.send(sex);
+    });
+});
 
 
 app.post('/findPations',bodyParser(), function(req, res){
@@ -117,20 +176,29 @@ app.post('/addPaition', function(req, res){
 });
 
 app.post('/createPation', function(req, res){
-   var patient = new Patient({
-            firstName : req.body.firstname,
-            middleName : req.body.secondtname,
-            lastName : req.body.lastname,
-            diagnosis : req.body.diagnosis,
-            dataRegistartion :req.body.dataRegistartion
-        });
-    console.log(patient);
-    patient.save(function (err, patient) {
-        if (err){
-               console.log("Something goes wrong with user " + patient.firstName);
-        }
-    });
-    res.redirect('/');
+    console.log("Get form");
+   // var patient = new Patient({
+   //          lastName          : {type : String, defult:'Dou'},
+   //          firstName         : {type : String, defult: 'John'},
+   //          fatherName        : {type : String, defult:'-'},
+   //          dateOfBirth       : {type : Date, defult: Date.now},
+   //          sex               : {type:String},
+   //          SSN               : {type:String},
+   //          passportNumber    : {type:String},
+   //          race              : {type:String},
+   //          religion          : {type:String},
+   //          specialSigns      : {type:String},
+   //          national          : {type:String},
+   //          contactInformation: {type:String},
+   //          contactPerson     : {type:String}
+   //      });
+    console.log(req.body);
+    // patient.save(function (err, patient) {
+    //     if (err){
+    //            console.log("Something goes wrong with user " + patient.firstName);
+    //     }
+    // });
+    // res.redirect('/');
 });
 
 
