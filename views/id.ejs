@@ -13,7 +13,7 @@
 	</titel>
 	</head>
 	<body ng-controller="mainControl">
-		<form name = "findByID" id = "main" action = "/editPations" method = "post" hidden>
+		<form name = "editPation" id = "main" action = "/editPations" method = "post" hidden>
 			<input type = "text" name = "Id" onchange="checkID(name,value)" onkeypress="timer(name)" value = "537b9f5f01c84ea4163c7cf3" >
 		</form>
 		<form name = "addPaition" id = "add" action = "/addPaition" method = "post">
@@ -68,7 +68,7 @@
 				<td>{{pation.firstName}}</td>
 				<td>{{pation.fatherName}}</td>
 				<td>{{pation.dateOfBirth}}</td>
-				<td><input type = "button" class="btn btn-default" name = "sub" value = "Edit" ng-click='main(pation._id)'></td>
+				<td><input type = "button" class="btn btn-default" name = "sub" value = "Edit" ng-click='edit(pation._id)'></td>
 			</tr>
 		</table>
 		<div>

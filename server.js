@@ -110,18 +110,57 @@ app.post('/getPationId',bodyParser(), function(req, res){
 });
 
 
+app.post('/getPationRase',bodyParser(), function(req, res){
+    var typeRace = req.body.race;
+    Race.find({_id : typeRace},function (err, race) {
+            console.log(typeRace);
+            res.send(race);
+        });
+});
+
 app.post('/getRase',bodyParser(), function(req, res){
     Race.find({},function (err, race) {
         res.send(race);
     });
-
 });
+
+app.post('/getPationSex',bodyParser(), function(req, res){
+    var typeSex = req.body.sex;
+    Sex.find({_id : typeSex},function (err, sex) {
+        console.log(typeSex);
+            res.send(sex);
+     });
+});
+
+
 app.post('/getSex',bodyParser(), function(req, res){
-    Sex.find({},function (err, sex) {
-        res.send(sex);
+        Sex.find({},function (err, sex) {
+            res.send(sex);
+        });
+});
+
+app.post('/getContactInformation',bodyParser(), function(req, res){
+    var idContactInformation = req.body.Id;
+        ContactInformation.find({_id:idContactInformation},function (err, contactInformation) {
+            res.send(contactInformation);
+        });
+});
+
+app.post('/getContactPerson',bodyParser(), function(req, res){
+    var idContactPerson = req.body.Id;
+        ContactPerson.find({_id:idContactPerson},function (err, contactPerson) {
+            res.send(contactPerson);
+        });
+});
+
+
+app.post('/getPation',bodyParser(), function(req, res){
+    var pationId = req.body.pationId;
+    Patient.find({_id:pationId},function (err, patient) {
+        console.log(patient);
+        res.send(patient);
     });
 });
-
 
 
 
@@ -160,15 +199,7 @@ app.post('/editPations',function(req, res){
     console.log(paitionId);
     Patient.find({_id:paitionId},function (err, persons) {
         console.log(persons);
-        select = {
-            Id : paitionId,
-            lNamne : persons[0].lastName,
-            fNamne : persons[0].firstName,
-            mNamne : persons[0].middleName,
-            diagnosis: persons[0].diagnosis,
-            dataRegistartion: persons[0].dataRegistartion
-        }
-        console.log('select');
+        select = {Id : paitionId}
         console.log(select);
         res.render('edit',select);
     });
@@ -176,21 +207,23 @@ app.post('/editPations',function(req, res){
 });
 
 
-app.post('/', function(req, res){
-    var patient = {
-            firstName : req.body.firstname,
-            middleName : req.body.secondtname,
-            lastName : req.body.lastname,
-            diagnosis : req.body.diagnosis,
-            dataRegistartion :req.body.dataRegistartion
-        };
-    var patientId =  req.body.Id;
-    console.log(patientId);
-    console.log(patient);
-    Patient.update({_id:patientId},{$set:patient},function(err, numAffected){
-        console.log("Upade");
-    });
-    res.render('id',{});
+app.post('/updatePation', function(req, res){
+    console.log(req.body);
+    // var patient = {
+    //         firstName : req.body.firstname,
+    //         middleName : req.body.secondtname,
+    //         lastName : req.body.lastname,
+    //         diagnosis : req.body.diagnosis,
+    //         dataRegistartion :req.body.dataRegistartion
+    //     };
+    // var patientId =  req.body.Id;
+    // console.log(patientId);
+    // console.log(patient);
+    // Patient.update({_id:patientId},{$set:patient},function(err, numAffected){
+    //     console.log("Upade");
+    // });
+    // res.render('id',{});
+    res.redirect('/');
 });
 
 
@@ -214,11 +247,13 @@ app.post('/createPation', function(req, res){
             console.log(contactInformation);
             contactInformation.save(function (err, contactInformation){
                     var contactPersonInformation = new ContactInformation({
-                                phoneNumberMobile  : req.body.phoneNumberMobileContactPe,
-                                phoneNumberHome    : req.body.phoneNumberHomeContactPers,
+                                phoneNumberMobile  : req.body.phoneNumberMobileContactPerson,
+                                phoneNumberHome    : req.body.phoneNumberHomeContactPerson,
                                 email              : req.body.emailContactPerson,
                                 skype              : req.body.skypeContactPerson
                                 });
+                    console.log(contactPersonInformation);
+                    console.log(contactInformation);
                     contactPersonInformation.save(function (err, contactPersonInformation){
                         var contactPerson = new ContactPerson({
                             firstName          : req.body.firstNameContactPerson,

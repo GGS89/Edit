@@ -2,9 +2,16 @@ function addControl($scope, $http) {
 
 
 	$scope.getInform = function(id){
+		var dataSex = {};
+		var dataRace = {};
+		dataSex.sex = '';
+		dataRace.race = '';
+
 		$scope.races = {};
 		$scope.sex = {};
 		$scope.pationId = {};
+
+
 		$.ajax({ 
 				url: 'http://localhost:3000/getPationId',
 				type: 'POST',
@@ -28,7 +35,7 @@ function addControl($scope, $http) {
 				url: 'http://localhost:3000/getRase',
 				type: 'POST',
 				cache: false, 
-				data: '', 
+				data: dataRace, 
 				success: function(race){
 					 console.log('success');
 					 //console.log(sendAjax);
@@ -46,7 +53,7 @@ function addControl($scope, $http) {
 				url: 'http://localhost:3000/getSex',
 				type: 'POST',
 				cache: false, 
-				data: '', 
+				data: dataSex, 
 				success: function(sex){
 					 console.log('success');
 					 //console.log(sendAjax);

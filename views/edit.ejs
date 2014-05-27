@@ -11,47 +11,187 @@
 		
 	</titel>
 	</head>
-	<body ng-controller="editControl">
-		<p>Edit</p>
+	<body ng-controller="editControl" ng-init="getInform()">
+		
+		
+		<form name = "updatePation" id = "add" action = "/updatePation" method = "post" class="form-horizontal" role="form">
+			   <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Pation ID</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control.addInput" name="pationID" placeholder="Pation ID" value={{patient.patientId}} disabled>
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Last Name</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control.addInput" name="lastName" placeholder="Last Name" value={{patient.lastName}}>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">First Name</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control.addInput" name="firstName" placeholder="First Name" value={{patient.firstName}}>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Father Name</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control.addInput" name="fatherName" placeholder="Father Name" value={{patient.fatherName}}>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Date Of Birth</label>
+			    <div class="col-sm-10">
+			      <input type="date" class="data" name="dateOfBirth" min="1900-01-01" max="2014-05-22" value={{patient.dateOfBirth}}>
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Sex</label>
+			    <div class="col-sm-10">
+			      <select class="sex" name="sex" value={{PationSex}}>
+					  <option ng-repeat="sex in sexs" >{{sex.type}}</option>
+					</select>
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">SSN</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control.addInput" name="SSN" placeholder="SSN" value={{patient.SSN}}>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Passport Number</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control.addInput" name="passportNumber" placeholder="Passport Number" value={{patient.passportNumber}}>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Race</label>
+			    <div class="col-sm-10">
+			      <select class="sex" name="race" value={{PationRace}}>
+					  <option ng-repeat="race in races">{{race.type}}</option>
+					</select>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Religion</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control.addInput" name="religion" placeholder="Religion" value={{patient.religion}}>
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">National</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control.addInput" name="national" placeholder="National" value={{patient.national}}>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Special Signs</label>
+			    <div class="col-sm-10">
+			       <textarea class="specialSigns" rows="3" name="specialSigns">{{patient.specialSigns}}</textarea>
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Contact Information</label>
+			    <div class="col-sm-10">
+						<div class="form-group">
+						    <label for="inputEmail3" class="col-sm-2 control-label">Phone Mobile</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="phoneNumberMobile" placeholder="Phone Mobile" value={{ContactInformation.phoneNumberMobile}}>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-2 control-label">Phone Home</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="phoneNumberHome" placeholder="Phone Home" value={{ContactInformation.phoneNumberHome}}>
+						    </div>
+						  </div>
+						   <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-2 control-label">Skype</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="skype" placeholder="Skype" value={{ContactInformation.skype}}>
+						    </div>
+						  </div>
+						   <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="email " placeholder="Email" value={{ContactInformation.email}}>
+						    </div>
+						  </div>
+						  <div class="col-sm-10">
+						  </div>
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Contact Person</label>
+
+			    <div class="col-sm-10">
+			    		 <div class="form-group">
+						    <label for="inputEmail3" class="col-sm-2 control-label">Last Name</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="lastNameContactPerson" placeholder="Last Name" value={{contactPerson.lastName}}>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-2 control-label">First Name</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="firstNameContactPerson" placeholder="First Name" value={{contactPerson.firstName}}>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-2 control-label">Father Name</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="fatherNameContactPerson" placeholder="Father Name" value={{contactPerson.fatherName}}>
+						    </div>
+						  </div>
+
+
+						<div class="form-group">
+						    <label for="inputEmail3" class="col-sm-2 control-label">Phone Mobile</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="phoneNumberMobileContactPerson" placeholder="Phone Mobile" value={{ContactPerssonContInf.phoneNumberMobile}}>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-2 control-label">Phone Home</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="phoneNumberHomeContactPerson" placeholder="Phone Home"  value={{ContactPerssonContInf.phoneNumberHome}}>
+						    </div>
+						  </div>
+						   <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-2 control-label">Skype</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="skypeContactPerson" placeholder="Skype" value={{ContactPerssonContInf.skype}}>
+						    </div>
+						  </div>
+						   <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control.addInput" name="emailContactPerson" placeholder="Email" value={{ContactPerssonContInf.email}}>
+						    </div>
+						  </div>
+						  <div class="col-sm-10">
+						  </div>
+			    </div>
+			  </div>
+
+
+			  <div class="form-group">
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <input type="button" class="btn btn-default" name="Submit" value="Submit" ng-click="editPation()">
+			    </div>
+			  </div>
+		</form>
+			
 		<form name = "formPerson" id = "main" action = "/" method = "post">
 			<div class="main">
 			<div class="field">
-				<label>Id Пациента</label>	
 				<input type = "text" name = "Id" value = <%-Id%> hidden>
 			</div>
-			<div class="field">
-				<label>Фамилия</label>	
-				<input type = "text" name = "lastname" onchange="checkLast(name,value)" onkeypress="timer(name)"  value = <%-lNamne%>>
-			</div>
-			<div class="field">
-				<label>Имя</label>
-				<input type = "text" name = "firstname" onchange="checkFirst(name,value)" onkeypress="timer(name)"  value = <%-fNamne%>>	
-			</div>
-			<div class="field">
-				<label>Отчество</label>
-				<input type = "text" name = "secondtname" onchange="checkSecond(name,value)" onkeypress="timer(name)" value = <%-mNamne%>>
-			</div>
-			<div class="field">
-				<label>Диагноз</label>
-				<input type = "text" name = "diagnosis" onchange="checkSecond(name,value)" onkeypress="timer(name)" value = <%-diagnosis%>>
-			</div>
-			<div class="field">
-				<label>Дата регистрации</label>
-				<input type = "text" name = "dataRegistartion" onchange="checkSecond(name,value)" onkeypress="timer(name)" value = <%-dataRegistartion%>>
-			</div>
-			<div class="field">
-				<input type = "button" class="btn btn-default" name = "sub" value = "Отправить" ng-click="main()">
-			</div>
-			<div>
-				<P>Дополнительная информация:</P>
-				<span id = "res"><span>
-				<span id = "info"><span>
-				<span id = "hint"><span>
-			</div>	
-		</div>
 		</form>
-		
 
-		
 	</body>	
 </html>
