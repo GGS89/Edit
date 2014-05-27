@@ -24,16 +24,19 @@
 
 		<form class="form-inline" role="form">
 		  <div class="form-group">
-		    <input type="text" class="form-control" name = "lNamne" placeholder="Enter Lastname">
+		    <input type="text" class="form-control" name = "PationId" placeholder="Enter Pation Id"  ng-model="query.patientId">
 		  </div>
 		  <div class="form-group">
-		    <input type="text" class="form-control" name = "FName" placeholder="Enter Firstname" ng-model="query.firstName">
+		    <input type="text" class="form-control" name = "lNamne" placeholder="Enter Last name" ng-model="query.lastName">
 		  </div>
 		  <div class="form-group">
-		    <input type="text" class="form-control" name = "MName" placeholder="Enter Fathername" ng-model="query.middleName">
+		    <input type="text" class="form-control" name = "FName" placeholder="Enter First name" ng-model="query.firstName">
 		  </div>
 		  <div class="form-group">
-		    <input type="text" class="form-control" name = "BirthDay" placeholder="Enter birthday">
+		    <input type="text" class="form-control" name = "MName" placeholder="Enter Father name" ng-model="query.fatherName">
+		  </div>
+		  <div class="form-group">
+		    <input type="text" class="form-control" name = "BirthDay" placeholder="Enter birthday" ng-model="query.dateOfBirth">
 		  </div>
 		  <button  ng-click="Angular()" class="btn btn-default">Find</button>
 		</form>
@@ -42,6 +45,7 @@
 		<table class="table table-hover">
 			<tr>
 				<td>#</td>
+				<td>Pation Id</td>
 				<td>Lastname</td>
 				<td>Firstname</td>
 				<td>Fathername</td>
@@ -54,14 +58,16 @@
 				<td>empty</td>
 				<td>empty</td>
 				<td>empty</td>
+				<td>empty</td>
 				<td><input type = "button" class="btn btn-default" name = "create" value = "Create" ng-click='addPation()'></td>
 			</tr>
 			<tr ng-repeat="pation in pations | filter:query">
 				<td>{{$index + 1}}</td>
+				<td>{{pation.patientId}}</td>
 				<td>{{pation.lastName}}</td>
 				<td>{{pation.firstName}}</td>
-				<td>{{pation.middleName}}</td>
-				<td>{{pation.dataRegistartion}}</td>
+				<td>{{pation.fatherName}}</td>
+				<td>{{pation.dateOfBirth}}</td>
 				<td><input type = "button" class="btn btn-default" name = "sub" value = "Edit" ng-click='main(pation._id)'></td>
 			</tr>
 		</table>

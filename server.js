@@ -103,6 +103,12 @@ app.set('view engine', 'ejs');
 app.get('/',function(req, res){
   res.render('id', {});}
 );
+app.post('/getPationId',bodyParser(), function(req, res){
+    PationId.find({},function (err, pationId) {
+        res.send(pationId);
+    });
+});
+
 
 app.post('/getRase',bodyParser(), function(req, res){
     Race.find({},function (err, race) {
@@ -117,6 +123,8 @@ app.post('/getSex',bodyParser(), function(req, res){
 });
 
 
+
+
 app.post('/findPations',bodyParser(), function(req, res){
     //res.send('Test');
 
@@ -126,18 +134,20 @@ app.post('/findPations',bodyParser(), function(req, res){
 //         data.BirthDay= $("input[name=BirthDay]").val();
 
     var pationID = req.body.id;
+    var pationUserID = req.body.PationId;
     var pationLastName = req.body.lNamne;
     var pationFirstName = req.body.FName;
     var pationMiddleName = req.body.MNamne;
     var pationBirthDay = req.body.BirthDay;
-
-    console.log(pationLastName);
-    console.log(pationID);
-    var re1 = new RegExp(pationLastName);
-    var re2 = new RegExp(pationFirstName);
-    var re3 = new RegExp(pationMiddleName);
-    var re = new RegExp(pationLastName);
-    Patient.find({$and:[{lastName:re1},{firstName:re2},{fatherName:re3}]},function (err, persons) {
+    console.log(req.body);
+    // console.log(pationLastName);
+    // console.log(pationID);
+    var re1 = new RegExp(pationLastName,'i');
+    var re2 = new RegExp(pationFirstName,'i');
+    var re3 = new RegExp(pationMiddleName,'i');
+    var re4 = new RegExp(pationUserID);
+    Patient.find({$and:[{patientId:re4},{lastName:re1},{firstName:re2},
+                        {fatherName:re3}]},function (err, persons) {
         console.log(persons);
         res.send(persons);
     });
@@ -219,16 +229,18 @@ app.post('/createPation', function(req, res){
                         contactPerson.save(function (err,contactPerson){
                             PationId.find({},function(err,id){
                                 var pationID = id[0].Id + 1;
-                                var patient = new Patient({
+                                Sex.find({type : req.body.sex}, function(err,sex){
+                                    Race.find({type:req.body.race},function(err,race){
+                                        var patient = new Patient({
                                         patientId         : pationID,
                                         lastName          : req.body.lastName,
                                         firstName         : req.body.firstName,
                                         fatherName        : req.body.fatherName,
                                         dateOfBirth       : req.body.dateOfBirth,
-                                        sex               : req.body.sex[0]._id,
+                                        sex               : sex[0]._id,
                                         SSN               : req.body.SSN,
                                         passportNumber    : req.body.passportNumber,
-                                        race              : req.body.race[0]._id,
+                                        race              : race[0]._id,
                                         religion          : req.body.religion,
                                         specialSigns      : req.body.specialSigns,
                                         national          : req.body.national,
@@ -236,14 +248,16 @@ app.post('/createPation', function(req, res){
                                         contactPerson     : contactPerson._id,
                                         diagnosis         : ''
                                 });
-                                PationId.update({Id:id[0].Id},{$set:{_id:id[0]._id,Id:pationID}},function(err, res){
-                                        console.log("Upade");
-                                        console.log(res);
-                                });
+                                        PationId.update({Id:id[0].Id},{$set:{Id:pationID}},function(err, res){
+                                                console.log("Upade");
+                                                console.log(res);
+                                        });
 
-                                patient.save(function(err,patient){
-                                    console.log(patient);
-                                    res.redirect('/')
+                                        patient.save(function(err,patient){
+                                            console.log(patient);
+                                            res.redirect('/')
+                                        });
+                                    });
                                 });
                             })
                    });   

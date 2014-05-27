@@ -12,8 +12,15 @@
 		
 	</titel>
 	</head>
-	<body ng-controller="addControl" ng-init="getRace()">
+	<body ng-controller="addControl" ng-init="getInform()">
 		<form name = "formCreatPerson" id = "add" action = "/createPation" method = "post" class="form-horizontal" role="form">
+			   <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Pation ID</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control.addInput" name="pationID" placeholder="Pation ID" value={{pationId}} disabled>
+			    </div>
+			  </div>
+
 			  <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">Last Name</label>
 			    <div class="col-sm-10">

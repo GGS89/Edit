@@ -1,9 +1,29 @@
 function addControl($scope, $http) {
 
 
-	$scope.getRace = function(id){
+	$scope.getInform = function(id){
 		$scope.races = {};
 		$scope.sex = {};
+		$scope.pationId = {};
+		$.ajax({ 
+				url: 'http://localhost:3000/getPationId',
+				type: 'POST',
+				cache: false, 
+				data: '', 
+				success: function(pationId){
+					 console.log('success');
+					 //console.log(sendAjax);
+					 console.log(pationId);
+					 $scope.$apply(function(){
+					 	$scope.pationId = pationId[0].Id + 1;
+					 });
+					 }
+				,error: function(jqXHR, textStatus, err){
+					console.log('fialed');
+					res = false;
+		           	}
+			});
+
 		$.ajax({ 
 				url: 'http://localhost:3000/getRase',
 				type: 'POST',

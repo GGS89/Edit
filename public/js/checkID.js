@@ -63,7 +63,8 @@ function mainControl($scope, $http) {
 		$scope.pations = {};
 		var data = {};
 		var countEmptyfield = 0;
-		var numberField = 4;
+		var numberField = 5;
+		data.PationId= $("input[name=PationId]").val();
 		data.lNamne= $("input[name=lNamne]").val();
 		data.FName= $("input[name=FName]").val();
 		data.MNamne= $("input[name=MName]").val();
