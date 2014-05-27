@@ -17,6 +17,11 @@ var Race = require('./db/Race');
 var Sex = require('./db/Sex');
 
 
+var Patient = require('./db/Pation');
+var ContactInformation = require('./db/ContactInformation');
+var ContactPerson = require('./db/ContactPerson');
+var PationId = require('./db/PationId');
+
 typeOfRace = ['White','Black','Asian'];
 
 // generate race table
@@ -56,11 +61,20 @@ function generateSex(){
 // });
 //Sex.find({_id:'537f0fad8dbffaf80b418c69'}).remove().exec();
 
+//!!!!! Need add check
+//init Id
+// var id = new PationId({Id:100000});
+// id.save(function(err,id){
+//     if(err){
+//         console.log("we get priblem with init PationId");
+//     }
+//     console.log(id);
+// });
 
+// PationId.find({},function(err,res){
+//     console.log(res);
+// })
 
-var Patient = require('./db/Pation');
-var ContactInformation = require('./db/ContactInformation');
-var ContactPerson = require('./db/ContactPerson');
 
 var app = express();
 app.use(bodyParser());
@@ -122,8 +136,8 @@ app.post('/findPations',bodyParser(), function(req, res){
     var re1 = new RegExp(pationLastName);
     var re2 = new RegExp(pationFirstName);
     var re3 = new RegExp(pationMiddleName);
-    //var re = new RegExp(pationLastName);
-    Patient.find({$and:[{lastName:re1},{firstName:re2},{middleName:re3}]},function (err, persons) {
+    var re = new RegExp(pationLastName);
+    Patient.find({$and:[{lastName:re1},{firstName:re2},{fatherName:re3}]},function (err, persons) {
         console.log(persons);
         res.send(persons);
     });
@@ -177,28 +191,66 @@ app.post('/addPaition', function(req, res){
 
 app.post('/createPation', function(req, res){
     console.log("Get form");
-   // var patient = new Patient({
-   //          lastName          : {type : String, defult:'Dou'},
-   //          firstName         : {type : String, defult: 'John'},
-   //          fatherName        : {type : String, defult:'-'},
-   //          dateOfBirth       : {type : Date, defult: Date.now},
-   //          sex               : {type:String},
-   //          SSN               : {type:String},
-   //          passportNumber    : {type:String},
-   //          race              : {type:String},
-   //          religion          : {type:String},
-   //          specialSigns      : {type:String},
-   //          national          : {type:String},
-   //          contactInformation: {type:String},
-   //          contactPerson     : {type:String}
-   //      });
-    console.log(req.body);
-    // patient.save(function (err, patient) {
-    //     if (err){
-    //            console.log("Something goes wrong with user " + patient.firstName);
-    //     }
-    // });
-    // res.redirect('/');
+      Sex.find({type:req.body.sex},function (err, sex){
+        console.log(sex[0]._id);
+        Race.find({type:req.body.race},function(err,race){
+            console.log(race[0]._id);
+            var contactInformation = new ContactInformation({
+                phoneNumberMobile  : req.body.phoneNumberMobile,
+                phoneNumberHome    : req.body.phoneNumberHome,
+                email              : req.body.email,
+                skype              : req.body.skype
+            });
+            console.log(contactInformation);
+            contactInformation.save(function (err, contactInformation){
+                    var contactPersonInformation = new ContactInformation({
+                                phoneNumberMobile  : req.body.phoneNumberMobileContactPe,
+                                phoneNumberHome    : req.body.phoneNumberHomeContactPers,
+                                email              : req.body.emailContactPerson,
+                                skype              : req.body.skypeContactPerson
+                                });
+                    contactPersonInformation.save(function (err, contactPersonInformation){
+                        var contactPerson = new ContactPerson({
+                            firstName          : req.body.firstNameContactPerson,
+                            fatherName         : req.body.fatherNameContactPerson,
+                            lastName           : req.body.lastNameContactPerson,
+                            contactInformation : contactPersonInformation._id});
+
+                        contactPerson.save(function (err,contactPerson){
+                            PationId.find({},function(err,id){
+                                var pationID = id[0].Id + 1;
+                                var patient = new Patient({
+                                        patientId         : pationID,
+                                        lastName          : req.body.lastName,
+                                        firstName         : req.body.firstName,
+                                        fatherName        : req.body.fatherName,
+                                        dateOfBirth       : req.body.dateOfBirth,
+                                        sex               : req.body.sex[0]._id,
+                                        SSN               : req.body.SSN,
+                                        passportNumber    : req.body.passportNumber,
+                                        race              : req.body.race[0]._id,
+                                        religion          : req.body.religion,
+                                        specialSigns      : req.body.specialSigns,
+                                        national          : req.body.national,
+                                        contactInformation: contactInformation._id,
+                                        contactPerson     : contactPerson._id,
+                                        diagnosis         : ''
+                                });
+                                PationId.update({Id:id[0].Id},{$set:{_id:id[0]._id,Id:pationID}},function(err, res){
+                                        console.log("Upade");
+                                        console.log(res);
+                                });
+
+                                patient.save(function(err,patient){
+                                    console.log(patient);
+                                    res.redirect('/')
+                                });
+                            })
+                   });   
+            });
+         });
+       });
+});
 });
 
 
