@@ -2,7 +2,7 @@ var db = require('./dbConect')
 var mongoose = require('mongoose');
 
 var patientSchema = new mongoose.Schema({
-	patientId		  : {type : Number},
+	patientId		  : {type : String},
 	lastName          : {type : String, defult:'Dou'},
 	firstName         : {type : String, defult: 'John'},
 	fatherName        : {type : String, defult:'-'},

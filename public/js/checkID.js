@@ -45,11 +45,13 @@ function box_shadow(res,JQelement){
 // }
 
 
-function mainControl($scope, $http) {
+function mainControl($rootScope,$scope, $http) {
 	var sendAjax = true;
 
 	$scope.main = function(id){
 		$("input[name=Id]").val(id);
+		$rootScope.pationId = id;
+		console.log($rootScope.pationId);
 		document.findByID.submit();
 	}
 

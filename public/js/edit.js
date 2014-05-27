@@ -1,3 +1,12 @@
+function editControl($rootScope, $scope, $http) {
+	$scope.main = function(){
+		console.log('Test');
+		console.log($rootScope.pationId);
+	}
+}
+
+
+
 function checkApha(name,line){
 	var alphas = /^[а-яА-Яa-zA-Z\s]{3,16}$/;
 	var JQelement = "input[name=" + name +"]";

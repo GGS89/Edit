@@ -228,7 +228,7 @@ app.post('/createPation', function(req, res){
 
                         contactPerson.save(function (err,contactPerson){
                             PationId.find({},function(err,id){
-                                var pationID = id[0].Id + 1;
+                                var pationID = parseInt(id[0].Id) + 1;
                                 Sex.find({type : req.body.sex}, function(err,sex){
                                     Race.find({type:req.body.race},function(err,race){
                                         var patient = new Patient({

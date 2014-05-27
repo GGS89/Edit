@@ -15,7 +15,7 @@ function addControl($scope, $http) {
 					 //console.log(sendAjax);
 					 console.log(pationId);
 					 $scope.$apply(function(){
-					 	$scope.pationId = pationId[0].Id + 1;
+					 	$scope.pationId = parseInt(pationId[0].Id) + 1;
 					 });
 					 }
 				,error: function(jqXHR, textStatus, err){

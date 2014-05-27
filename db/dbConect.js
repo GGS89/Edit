@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 console.log(mongoose.version);
-var db = mongoose.createConnection('mongodb://localhost/testPationCreate');
+var db = mongoose.createConnection('mongodb://localhost/testPationSerach');//testPationCreate
 db.on("error", console.error.bind(console, "connection error:"));
 
 db.once("open", function callback () {

@@ -1,5 +1,5 @@
 
-<html>
+<html ng-app>
 	<head>
 		<meta charset="UTF-8" />
 	<titel>
@@ -7,10 +7,11 @@
 		<link rel="stylesheet" type="text/css" href="bootstrap.css">
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script type = "text/javascript" src = "edit.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 		
 	</titel>
 	</head>
-	<body>
+	<body ng-controller="editControl">
 		<p>Edit</p>
 		<form name = "formPerson" id = "main" action = "/" method = "post">
 			<div class="main">
@@ -39,7 +40,7 @@
 				<input type = "text" name = "dataRegistartion" onchange="checkSecond(name,value)" onkeypress="timer(name)" value = <%-dataRegistartion%>>
 			</div>
 			<div class="field">
-				<input type = "button" class="btn btn-default" name = "sub" value = "Отправить" onClick = 'main()'>
+				<input type = "button" class="btn btn-default" name = "sub" value = "Отправить" ng-click="main()">
 			</div>
 			<div>
 				<P>Дополнительная информация:</P>
